@@ -1,0 +1,20 @@
+::::::::::::::::
+2017-05-03
+v1.1
+• Removed redundant function, resulting in considerably faster training
+• Renamed erronously named "Cross-Entropy" error function for the Softmax activation function to "Log-Likelihood"
+• Fixed an error where colouring nodes by influence wouldn't work for the Softmax activation function
+• Changed randomization functions for weights and biases from uniform distribution to normal distribution
+• Changed mini-batch default size to 1
+• Fixed a small bug in calculating the error while training. This may have increaded trainign speed.
+
+::::::::::::::::
+2017-04-11
+v1.0
+• Renamed to "dracon" (dynamic representation and creation of neural networks), since no dynamic generation of networks is possible (yet)
+• First useable version
+
+::::::::::::::::
+2015-12-24
+v0.0
+• Project started, tentative name "dragon" (dynamic representation and generation of neural networks)

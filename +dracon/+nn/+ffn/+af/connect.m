@@ -20,8 +20,7 @@ classdef connect < dracon.nn.ffn.af
             c.options.cost = c;
         end
         
-        function out = train(~,ffn,x,~,~,batch,~)
-            a = ffn.run(x,batch);
+        function out = train(~, ~, a, ~, ~, ~, ~)
             out = a{end};
         end
         
@@ -84,9 +83,9 @@ classdef connect < dracon.nn.ffn.af
             end
 		end
         
-        function out = trainComb(nets, len, x, y, rate, batch, all, inter)
+        function out = trainComb(nets, len, a, y, rate, batch, all, inter)
             out = dracon.nn.ffn.af.logistic.training.backprop.trainComb...
-                (nets,len,x,y,rate,batch,all,inter);
+                (nets,len,a,y,rate,batch,all,inter);
         end
 		
 		function code = getCode(~, ~)

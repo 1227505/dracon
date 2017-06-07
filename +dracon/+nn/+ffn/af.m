@@ -9,8 +9,8 @@ classdef (Abstract) af < dracon.util.option & dracon.util.hasoptions
 	end
     
     methods (Abstract)		
-        out = train(af, ffn, x, y, rate, batch, all);
-        out = trainComb(af, nets, len, x, y, rate, batch, all, inter);
+        out = train(af, ffn, a, y, rate, batch, all);
+        out = trainComb(af, nets, len, a, y, rate, batch, all, inter);
         out = err(af, ffn, y, a);
 		
 		cl = clone(af);

@@ -28,8 +28,8 @@ classdef (Abstract) nn < dracon.util.option & dracon.util.hasoptions
 		% Test speed benefits, if none, remove
         out = runSimple(nn, x, batch);
         
-        out = train(nn, x, y, rate, batch, all);
-        out = trainComb(nn, nets, len, x, y, rate, batch, all, inter);
+        out = train(nn, a, y, rate, batch, all);
+        out = trainComb(nn, nets, len, a, y, rate, batch, all, inter);
         out = err(nn, y, a, all);
 		
 		inf = getInfluence(nn, x, nods);

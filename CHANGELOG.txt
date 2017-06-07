@@ -1,4 +1,10 @@
 ::::::::::::::::
+2017-06-04
+v1.2
+• Fixed a bug preventing combined training of multiple networks
+• Added Rectified Linear Units as activation function.
+
+::::::::::::::::
 2017-05-03
 v1.1
 • Removed redundant function, resulting in considerably faster training
@@ -6,7 +12,7 @@ v1.1
 • Fixed an error where colouring nodes by influence wouldn't work for the Softmax activation function
 • Changed randomization functions for weights and biases from uniform distribution to normal distribution
 • Changed mini-batch default size to 1
-• Fixed a small bug in calculating the error while training. This may have increaded trainign speed.
+• Fixed a small bug in calculating the error while training. This may have increased training speed.
 
 ::::::::::::::::
 2017-04-11

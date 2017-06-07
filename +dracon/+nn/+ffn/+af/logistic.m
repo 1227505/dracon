@@ -22,13 +22,13 @@ classdef logistic < dracon.nn.ffn.af
 			comb = l.options.training.COMBGROUP;
 		end
 		
-		function out = train(l, ffn, x, y, rate, batch, all)
-			out = l.options.training.train(ffn, x, y, rate, batch, all);
+		function out = train(l, ffn, a, y, rate, batch, all)
+			out = l.options.training.train(ffn, a, y, rate, batch, all);
 		end
 
-		function out = trainComb(l, nets, len, x, y, ...
+		function out = trainComb(l, nets, len, a, y, ...
 				rate, batch, all, inter)
-			out = l.options.training.trainComb(nets, len, x, y, ...
+			out = l.options.training.trainComb(nets, len, a, y, ...
 				rate, batch, all, inter);
 		end
 

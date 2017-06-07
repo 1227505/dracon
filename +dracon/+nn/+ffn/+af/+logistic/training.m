@@ -7,12 +7,12 @@ classdef (Abstract) training < dracon.util.option & dracon.util.hasoptions
     end
     
     methods (Abstract)
-        out = train(t, ffn, x, y, rate, batch, all);
+        out = train(t, ffn, a, y, rate, batch, all);
         out = err(t, ffn, y, a);
     end
        
     methods (Abstract, Static);
-        out = trainComb(nets, len, x, y, rate, batch, all, inter);
+        out = trainComb(nets, len, a, y, rate, batch, all, inter);
     end
     
     methods

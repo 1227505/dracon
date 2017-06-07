@@ -22,18 +22,18 @@ classdef softmax < dracon.nn.ffn.af
 			comb = s.options.training.COMBGROUP;
 		end
 
-		function out = train(s, ffn, x, y, rate, batch, all)
-			out = s.options.training.train(ffn, x, y, rate, batch, all);
+		function out = train(s, ffn, a, y, rate, batch, all)
+			out = s.options.training.train(ffn, a, y, rate, batch, all);
 		end
 
 		function out = err(s, ffn, y, a, all)
 			out = s.options.training.err(ffn, y, a, all);
 		end
 
-		function out = trainComb(s, nets, len, x, y, rate, ...
+		function out = trainComb(s, nets, len, a, y, rate, ...
 									batch, all, inter)
 			out = s.options.training. ...
-				trainComb(nets,len,x,y,rate,batch,all,inter);
+				trainComb(nets, len, a, y, rate, batch, all, inter);
 		end
 
 		function cl = clone(s)

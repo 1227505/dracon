@@ -650,7 +650,7 @@ classdef dracon < handle
 			net = drcn.nets{x}{y};
 		end
 		
-		function out = run(drcn, in, ev)
+		function [out, a] = run(drcn, in, ev)
 			validateattributes(drcn.nets, {'cell'}, {'nonempty'}, ...
 								'run', 'nets');
 			if(nargin < 3 || ev~= 0)
@@ -706,11 +706,10 @@ classdef dracon < handle
 			end
 
 			posin = 0;
-			netnum = numel(drcn.nets{len});
-			for l = 1:netnum
-				data{len}{l} = drcn.nets{len}{l}.run(x(posin+1: ...
-					posin+drcn.nets{len}{l}.in,:), batch);
-				posin = posin + drcn.nets{len}{l}.in;
+			for l = 1:numel(drcn.nets{end});
+				data{end}{l} = drcn.nets{end}{l}.run(in(posin+1: ...
+					posin+drcn.nets{end}{l}.in,:), batch);
+				posin = posin + drcn.nets{end}{l}.in;
 			end
 			
 			out = [];
@@ -719,11 +718,15 @@ classdef dracon < handle
 					out = [out; data{end}{k}{end}]; %#ok<AGROW>
 				end
 			end
+			if(nargout == 2)
+				a = data;
+			end
 			
 			if(ev)
 				drcn.runData = data;
 				drcn.notify('NetsRun');
 			end
+			
 		end
 		
 		function out = runSingle(drcn, x, y, in, ev)
@@ -912,7 +915,7 @@ classdef dracon < handle
 				end
 				inter{x} = zeros(o, batch);
 				if(m)
-					interm{x} = zeros(o, batch);
+					interm{x} = inter{x};
 				end
 				validateattributes(inter{x}, {'numeric'}, {'nrows', i}, ...
 								'train', ['inter-output ', num2str(x)]);
@@ -920,6 +923,7 @@ classdef dracon < handle
 			
 			stop = stop * all;
 			n = drcn.nets{end}{1};
+			
 			err = sum(n.err(out, drcn.run(in, 0), all));
 			
 			if(stop >= err)
@@ -984,10 +988,12 @@ classdef dracon < handle
 					out = out(:, id);
 				end
 				for l = 1:nb-1
-					n.trainComb(ns, len, in(:, pos{l}), ...
+					[~, a] = drcn.run(in(:, pos{l}), 0);
+					n.trainComb(ns, len, a, ...
 						out(:, pos{l}), rate, batch, all, inter);
 				end
-				n.trainComb(ns, len, in(:, pos{end}), ...
+				[~, a] = drcn.run(in(:, pos{end}), 0);
+				n.trainComb(ns, len, a, ...
 					out(:, pos{end}), rate, m, all, interm);
 				
 				% TODO: Make run intern for speed
@@ -1115,11 +1121,11 @@ classdef dracon < handle
 					out = out(:, id);
 				end
 				for l = 1:nb-1
-					n.train(in(:, pos{l}), out(:, pos{l}), rate, ...
-															batch, all);
+					n.train(n.run(in(:, pos{l}), batch), ...
+						out(:, pos{l}), rate, batch, all);
 				end
-				n.train(in(:, pos{end}), out(:, pos{end}), rate, ...
-															m, all);
+				n.train(n.run(in(:, pos{end}), batch), ...
+					out(:, pos{end}), rate, m, all);
 				nerr = sum(n.err(out, n.runSimple(in, all), all));
 				
 				if(nerr < err)

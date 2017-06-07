@@ -22,17 +22,17 @@ classdef relu < dracon.nn.ffn.af
             comb = r.options.training.COMBGROUP;
 		end
         
-        function out = train(r, ffn, x, y, rate, batch, all)
-            out = r.options.training.train(ffn, x, y, rate, batch, all);
+        function out = train(r, ffn, a, y, rate, batch, all)
+            out = r.options.training.train(ffn, a, y, rate, batch, all);
         end
         
         function out = err(r, ffn, y, a, all)
             out = r.options.training.err(ffn, y, a, all);
 		end
         
-        function out = trainComb(r, nets, len, x, y, rate, ...
+        function out = trainComb(r, nets, len, a, y, rate, ...
 												batch, all, inter)
-            out = r.options.training.trainComb(nets, len, x, y, rate, ...
+            out = r.options.training.trainComb(nets, len, a, y, rate, ...
 												batch, all, inter);
         end
         

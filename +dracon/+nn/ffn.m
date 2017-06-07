@@ -45,13 +45,13 @@ classdef ffn < dracon.nn
 			a = ffn.options.af.getInfluence(ffn, x, nod);
 		end
 
-		function out = train(ffn, x, y, rate, batch, all)
-			out = ffn.options.af.train(ffn, x, y, rate, batch, all);
+		function out = train(ffn, a, y, rate, batch, all)
+			out = ffn.options.af.train(ffn, a, y, rate, batch, all);
 		end
 
-		function out = trainComb(ffn, nets, len, x, y, ...
+		function out = trainComb(ffn, nets, len, a, y, ...
 				rate, batch, all, inter)
-			out = ffn.options.af.trainComb(nets, len, x, y, rate, ...
+			out = ffn.options.af.trainComb(nets, len, a, y, rate, ...
 											batch, all, inter);
 		end
 

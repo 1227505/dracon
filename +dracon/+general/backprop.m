@@ -37,8 +37,7 @@ classdef (Abstract) backprop < handle
 	end
 
 	methods
-		function out = train(b, ffn, x, y, rate, batch, all)
-			a = ffn.run(x, batch);
+		function out = train(b, ffn, a, y, rate, batch, all)
 			del = b.options.cost.deltaL(y, a{end});
 			b.adjust(ffn, a, del, rate, batch, all);
 			out = a{end};
@@ -71,10 +70,7 @@ classdef (Abstract) backprop < handle
 	end
 
 	methods (Static)
-		function out = trainComb(nets, len, x, y, rate, batch, all, inter)
-			a = dracon.general.backprop.runComb(nets, len, x, ...
-												batch, inter);
-
+		function out = trainComb(nets, len, a, y, rate, batch, all, inter)
 			del = y;
 			out = y;
 			posdel = 0;

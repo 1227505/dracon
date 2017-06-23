@@ -19,9 +19,9 @@ classdef training < dracon.gui.view
 		TOO_FEW_SOURCES	= 'Not enough sources.';
 		TOO_FEW_INPUT	= 'Not enough input data.';
 		INEQUAL_SELECT	= ['Number of selected outputs (%d) and ', ...
-							'expected outputs (%d) inequal.'];
+							'desired outputs (%d) inequal.'];
 		INEQUAL_DATA	= ['Data size of selected outputs (%d) and ', ...
-							'expected outputs (%d) inequal.'];
+							'desired outputs (%d) inequal.'];
 		
 		ADD_TEXT		= 'Add Source';
 		ADD_TOOLTIP		= '<html><i>CTRL+N</i></html>';
@@ -75,7 +75,7 @@ classdef training < dracon.gui.view
 		MATCH_BUT_TEXT	= 'Match Data';
 		MATCH_TOOLTIP	= ['<html><i>CTRL+M</i><br>', ...
 							'Compares selected output values ', ...
-							'(Output Manager) to selected expected ', ...
+							'(Output Manager) to selected desired ', ...
 							'output values (Training Manager).<br>', ...
 							'Mismatching values are highlighted with ', ...
 							'>>> in the Output Manager.<br>', ...
@@ -153,7 +153,7 @@ classdef training < dracon.gui.view
 		batchField;			% Editable field to enter batch size
 		stopField;			% Editable field to an error value to stop at
 		epochsField;		% Editable field to enter number of epochs
-		matchButton;		% Button to match selected expected output
+		matchButton;		% Button to match selected desired output
 							% to selected output
 		matchText;			% Text displaying number of matches
 		optSP;				% Scrollpanel containing the above

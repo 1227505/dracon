@@ -16,7 +16,7 @@ classdef dracon < handle
 
 	properties (Constant)
 		NAME = 'dracon';	% Title of the gui.
-		VERSION = 'v1.1';   % Current version, also part of the title.
+		VERSION = 'v1.2';   % Current version, also part of the title.
 	end
 
 	properties
